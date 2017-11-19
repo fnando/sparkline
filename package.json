@@ -1,0 +1,8 @@
+{
+  "name": "@fnando/sparkline",
+  "version": "0.1.0",
+  "main": "sparkline.js",
+  "description": "Generate SVG sparklines",
+  "license": "MIT",
+  "repository": "https://github.com/fnando/sparkline"
+}
