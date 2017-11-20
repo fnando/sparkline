@@ -4,5 +4,6 @@
   "main": "sparkline.js",
   "description": "Generate SVG sparklines",
   "license": "MIT",
-  "repository": "https://github.com/fnando/sparkline"
+  "repository": "https://github.com/fnando/sparkline",
+  "private": false
 }
