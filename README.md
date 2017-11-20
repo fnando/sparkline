@@ -2,6 +2,20 @@
 
 Generate SVG sparklines.
 
+## Instalation
+
+This lib is available as a NPM package. To install it, use the following command:
+
+```
+npm install @fnando/sparkline --save
+```
+
+If you're using Yarn (and you should):
+
+```
+yarn add @fnando/sparkline
+```
+
 ## Usage
 
 ```html
