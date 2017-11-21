@@ -100,7 +100,8 @@ export function sparkline(svg, entries, options) {
   const datapoints = [];
 
   // Hold the line coordinates.
-  let pathCoords = "M" + spotDiameter + " " + getY(max, height, strokeWidth + spotRadius, values[0]);
+  const pathY = getY(max, height, strokeWidth + spotRadius, values[0]);
+  let pathCoords = `M${spotDiameter} ${pathY}`;
 
   values.forEach((value, index) => {
     const x = (index === lastItemIndex) ? width : index * offset + spotDiameter;
@@ -112,10 +113,7 @@ export function sparkline(svg, entries, options) {
       y: y
     }));
 
-    pathCoords += " L ";
-    pathCoords += x;
-    pathCoords += " "
-    pathCoords += y;
+    pathCoords += ` L ${x} ${y}`;
   });
 
   const path = buildElement("path", {
@@ -123,8 +121,7 @@ export function sparkline(svg, entries, options) {
     fill: "none"
   });
 
-  let fillCoords = pathCoords + " V " + fullHeight;
-  fillCoords +=  "L " + spotDiameter + " " + fullHeight + " Z";
+  let fillCoords = `${pathCoords} V ${fullHeight} L ${spotDiameter} ${fullHeight} Z`;
 
   const fill = buildElement("path", {
     d: fillCoords,
