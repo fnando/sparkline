@@ -1,9 +1,22 @@
 {
   "name": "@fnando/sparkline",
   "version": "0.1.0",
-  "main": "sparkline.js",
+  "main": "dist/sparkline.js",
+  "module": "src/sparkline.js",
+  "scripts": {
+    "js:dist:expanded": "webpack",
+    "js:dist:minified": "NODE_ENV=production webpack",
+    "dist": "npm run js:dist:expanded && npm run js:dist:minified"
+  },
   "description": "Generate SVG sparklines",
   "license": "MIT",
   "repository": "https://github.com/fnando/sparkline",
-  "private": false
+  "private": false,
+  "devDependencies": {
+    "babel-core": "6.26.0",
+    "babel-loader": "7.1.2",
+    "babel-preset-env": "1.6.1",
+    "uglifyjs-webpack-plugin": "1.1.0",
+    "webpack": "3.8.1"
+  }
 }

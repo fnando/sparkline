@@ -24,8 +24,15 @@ yarn add @fnando/sparkline
 
 <script>
   // the function signature is sparkline(targetSVG, values).
-  sparkline(document.querySelector("svg"), [1, 5, 2, 4, 8, 3, 7]);
+  sparkline.default(document.querySelector("svg"), [1, 5, 2, 4, 8, 3, 7]);
 </script>
+```
+
+Notice that you can import sparkline like the following:
+
+```js
+import sparkline from "@fnando/sparkline";
+sparkline(document.querySelector("svg"), [1, 5, 2, 4, 8, 3, 7]);
 ```
 
 To set the sparkline color, you have to set the stroke and fill colors.
@@ -44,9 +51,15 @@ svg {
 }
 ```
 
-You can [see this library in action](https://codepen.io/fnando/full/KyZLLV/).
+You can [see the example above in action](https://codepen.io/fnando/full/KyZLLV/).
 
 ![](https://github.com/fnando/sparkline/blob/master/sparkline.gif?raw=true)
+
+You can also create interactive sparklines.
+
+![](https://github.com/fnando/sparkline/blob/master/sparkline-interactive.gif?raw=true)
+
+You can [see the example above in action](https://codepen.io/fnando/pen/GOQLVE).
 
 ## License
 
