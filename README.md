@@ -51,7 +51,7 @@ svg {
 }
 ```
 
-You can [see the example above in action](https://codepen.io/fnando/full/KyZLLV/).
+You can [see the example below in action](https://codepen.io/fnando/full/KyZLLV/).
 
 ![](https://github.com/fnando/sparkline/blob/master/sparkline.gif?raw=true)
 
@@ -59,7 +59,7 @@ You can also create interactive sparklines.
 
 ![](https://github.com/fnando/sparkline/blob/master/sparkline-interactive.gif?raw=true)
 
-You can [see the example above in action](https://codepen.io/fnando/pen/GOQLVE).
+You can [see the example above in action](https://codepen.io/fnando/full/GOQLVE).
 
 ## License
 
