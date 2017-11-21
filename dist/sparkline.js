@@ -117,7 +117,7 @@ function sparkline(svg, entries, options) {
   // This function will be called whenever the mouse moves
   // over the SVG. You can use it to render something like a
   // tooltip.
-  var onmove = options.onmove;
+  var onmousemove = options.onmousemove;
 
   // This function will be called whenever the mouse leaves
   // the SVG area. You can use it to hide the tooltip.
@@ -125,7 +125,7 @@ function sparkline(svg, entries, options) {
 
   // Should we run in interactive mode? If yes, this will handle the
   // cursor and spot position when moving the mouse.
-  var interactive = "interactive" in options ? options.interactive : !!onmove;
+  var interactive = "interactive" in options ? options.interactive : !!onmousemove;
 
   // Define how big should be the spot area.
   var spotRadius = options.sportRadius || 2;
@@ -280,8 +280,8 @@ function sparkline(svg, entries, options) {
     cursor.setAttribute("x1", x);
     cursor.setAttribute("x2", x);
 
-    if (onmove) {
-      onmove(event, currentDataPoint);
+    if (onmousemove) {
+      onmousemove(event, currentDataPoint);
     }
   });
 }
