@@ -81,7 +81,7 @@ function getY(max, height, diff, value) {
 
 function removeChildren(svg) {
   svg.querySelectorAll("*").forEach(function (element) {
-    svg.removeChild(element);
+    return svg.removeChild(element);
   });
 }
 
