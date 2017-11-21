@@ -8,7 +8,7 @@
     "js:dist:minified": "NODE_ENV=production webpack",
     "dist": "npm run js:dist:expanded && npm run js:dist:minified"
   },
-  "description": "Generate SVG sparklines",
+  "description": "Generate SVG sparklines with JavaScript without any external dependency.",
   "license": "MIT",
   "repository": "https://github.com/fnando/sparkline",
   "private": false,

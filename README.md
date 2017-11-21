@@ -1,6 +1,6 @@
 # sparkline
 
-Generate SVG sparklines.
+Generate SVG sparklines with JavaScript without any external dependency.
 
 ## Instalation
 
@@ -22,7 +22,7 @@ You'll have to call `sparkline.sparkline(svg, values, options)` directly if you'
 
 ### `sparkline(svg, values, options = {})`
 
-- `svg`: This is a `<svg>` reference that must contain three required attributes (`width`, `height`, and `stroke-width`). This values are used to calculate the drawing area.
+- `svg`: This is a `<svg>` reference that must contain three required attributes (`width`, `height`, and `stroke-width`). These attributes are used to calculate the drawing area.
 - `values`: You can either provide an array of numbers or an array of objects that respond to `.value`. If you have a different data structure, see `options.fetch`.
 - `options`: This optional argument allows you to further customize the sparkline. The available options are:
     - `fetch`: Use this function to return the value if you have a different data structure that's not natively supported by sparkline.
