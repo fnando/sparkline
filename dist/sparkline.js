@@ -128,7 +128,7 @@ function sparkline(svg, entries, options) {
   var interactive = "interactive" in options ? options.interactive : !!onmousemove;
 
   // Define how big should be the spot area.
-  var spotRadius = options.sportRadius || 2;
+  var spotRadius = options.spotRadius || 2;
   var spotDiameter = spotRadius * 2;
 
   // Define how wide should be the cursor area.
