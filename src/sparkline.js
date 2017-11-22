@@ -93,7 +93,7 @@ export function sparkline(svg, entries, options) {
   const lastItemIndex = entriesCount - 1;
 
   // Calculate the X coord base step.
-  const offset = Math.round((width - spotDiameter) / lastItemIndex);
+  const offset = width / entriesCount;
 
   // Hold all datapoints, which is whatever we got as the entry plus
   // x/y coords and the index.
@@ -104,7 +104,7 @@ export function sparkline(svg, entries, options) {
   let pathCoords = `M${spotDiameter} ${pathY}`;
 
   values.forEach((value, index) => {
-    const x = (index === lastItemIndex) ? width : index * offset + spotDiameter;
+    const x = index * offset + spotDiameter;
     const y = getY(max, height, strokeWidth + spotRadius, value);
 
     datapoints.push(Object.assign({}, entries[index], {
