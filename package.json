@@ -4,9 +4,10 @@
   "main": "dist/sparkline.js",
   "module": "src/sparkline.js",
   "scripts": {
+    "test": "mocha --require babel-core/register 'test/**/*_test.js'",
     "js:dist:expanded": "webpack",
     "js:dist:minified": "NODE_ENV=production webpack",
-    "dist": "npm run js:dist:expanded && npm run js:dist:minified"
+    "dist": "yarn js:dist:expanded && yarn js:dist:minified"
   },
   "description": "Generate SVG sparklines with JavaScript without any external dependency.",
   "license": "MIT",
@@ -16,6 +17,9 @@
     "babel-core": "6.26.0",
     "babel-loader": "7.1.2",
     "babel-preset-env": "1.6.1",
+    "jsdom": "11.4.0",
+    "mocha": "4.0.1",
+    "snap-shot": "2.17.0",
     "uglifyjs-webpack-plugin": "1.1.0",
     "webpack": "3.8.1"
   }

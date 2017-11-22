@@ -13,11 +13,16 @@ module.exports = {
   entry: `${__dirname}/src/sparkline.js`,
   devtool: "source-map",
   target: "web",
+  node: {
+    fs: "empty"
+  },
+
   output: {
     path: `${__dirname}/dist/`,
     filename: filename,
     library: "sparkline"
   },
+
   module: {
     rules: [
       {
