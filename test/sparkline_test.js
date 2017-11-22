@@ -97,11 +97,11 @@ describe("sparkline", () => {
       cancelable: true
     });
 
-    event.offsetX = 49;
+    event.offsetX = 40;
     svg.dispatchEvent(event);
     snapshot(svg.outerHTML);
 
-    event.offsetX = 51;
+    event.offsetX = 80;
     svg.dispatchEvent(event);
     snapshot(svg.outerHTML);
   });
@@ -116,7 +116,7 @@ describe("sparkline", () => {
       cancelable: true
     });
 
-    event.offsetX = 49;
+    event.offsetX = 25;
     svg.dispatchEvent(event);
 
     assert.deepEqual(call[0], event);

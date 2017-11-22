@@ -7,7 +7,7 @@
     "test": "mocha --require babel-core/register 'test/**/*_test.js'",
     "js:dist:expanded": "webpack",
     "js:dist:minified": "NODE_ENV=production webpack",
-    "dist": "yarn js:dist:expanded && yarn js:dist:minified"
+    "dist": "yarn test && yarn js:dist:expanded && yarn js:dist:minified"
   },
   "description": "Generate SVG sparklines with JavaScript without any external dependency.",
   "license": "MIT",
