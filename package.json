@@ -1,6 +1,11 @@
 {
   "name": "@fnando/sparkline",
   "version": "0.3.2",
+  "files": [
+    "src/sparkline.js",
+    "dist/**/*",
+    "README.md"
+  ],
   "main": "dist/sparkline.js",
   "module": "src/sparkline.js",
   "scripts": {
