@@ -75,6 +75,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.sparkline = sparkline;
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 function getY(max, height, diff, value) {
   return parseFloat((height - value * height / max + diff).toFixed(2));
 }
@@ -161,20 +164,17 @@ function sparkline(svg, entries, options) {
 
   // The maximum value. This is used to calculate the Y coord of
   // each sparkline datapoint.
-  var max = Math.max.apply(Math, values);
+  var max = Math.max.apply(Math, _toConsumableArray(values));
 
   // Some arbitrary value to remove the cursor and spot out of
   // the viewing canvas.
   var offscreen = -1000;
 
-  // Cache the values size.
-  var entriesCount = values.length;
-
   // Cache the last item index.
-  var lastItemIndex = entriesCount - 1;
+  var lastItemIndex = values.length - 1;
 
   // Calculate the X coord base step.
-  var offset = width / entriesCount;
+  var offset = width / lastItemIndex;
 
   // Hold all datapoints, which is whatever we got as the entry plus
   // x/y coords and the index.
