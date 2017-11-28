@@ -80,20 +80,17 @@ export function sparkline(svg, entries, options) {
 
   // The maximum value. This is used to calculate the Y coord of
   // each sparkline datapoint.
-  const max = Math.max.apply(Math, values);
+  const max = Math.max(...values);
 
   // Some arbitrary value to remove the cursor and spot out of
   // the viewing canvas.
   const offscreen = -1000;
 
-  // Cache the values size.
-  const entriesCount = values.length;
-
   // Cache the last item index.
-  const lastItemIndex = entriesCount - 1;
+  const lastItemIndex = values.length - 1;
 
   // Calculate the X coord base step.
-  const offset = width / entriesCount;
+  const offset = width / lastItemIndex;
 
   // Hold all datapoints, which is whatever we got as the entry plus
   // x/y coords and the index.
