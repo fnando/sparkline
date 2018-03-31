@@ -125,8 +125,8 @@ export function sparkline(svg, entries, options) {
     stroke: "none"
   });
 
-  svg.appendChild(path);
   svg.appendChild(fill);
+  svg.appendChild(path);
 
   if (!interactive) {
     return;
