@@ -53,7 +53,7 @@ describe("sparkline", () => {
     });
 
     event.offsetX = 49;
-    svg.dispatchEvent(event);
+    svg.querySelector(".sparkline--interaction-layer").dispatchEvent(event);
 
     snapshot(svg.outerHTML);
   });
@@ -68,7 +68,7 @@ describe("sparkline", () => {
     });
 
     event.offsetX = 49;
-    svg.dispatchEvent(event);
+    svg.querySelector(".sparkline--interaction-layer").dispatchEvent(event);
 
     snapshot(svg.outerHTML);
   });
@@ -83,7 +83,7 @@ describe("sparkline", () => {
     });
 
     event.offsetX = 100;
-    svg.dispatchEvent(event);
+    svg.querySelector(".sparkline--interaction-layer").dispatchEvent(event);
 
     snapshot(svg.outerHTML);
   });
@@ -98,11 +98,11 @@ describe("sparkline", () => {
     });
 
     event.offsetX = 40;
-    svg.dispatchEvent(event);
+    svg.querySelector(".sparkline--interaction-layer").dispatchEvent(event);
     snapshot(svg.outerHTML);
 
     event.offsetX = 80;
-    svg.dispatchEvent(event);
+    svg.querySelector(".sparkline--interaction-layer").dispatchEvent(event);
     snapshot(svg.outerHTML);
   });
 
@@ -117,7 +117,7 @@ describe("sparkline", () => {
     });
 
     event.offsetX = 25;
-    svg.dispatchEvent(event);
+    svg.querySelector(".sparkline--interaction-layer").dispatchEvent(event);
 
     assert.deepEqual(call[0], event);
     assert.deepEqual(call[1].value, 5);
@@ -136,7 +136,7 @@ describe("sparkline", () => {
       cancelable: true
     });
 
-    svg.dispatchEvent(event);
+    svg.querySelector(".sparkline--interaction-layer").dispatchEvent(event);
 
     assert.deepEqual(call[0], event);
   });
