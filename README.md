@@ -70,6 +70,15 @@ You can change the colors by either setting the attributes directly to the SVG e
 .sparkline--cursor {
   stroke: orange;
 }
+
+/* style fill area and line colors using specific class name */
+.sparkline--fill {
+  fill: rgba(255, 0, 0, .3);
+}
+
+.sparkline--line {
+  stroke: red;
+}
 ```
 
 ## Examples

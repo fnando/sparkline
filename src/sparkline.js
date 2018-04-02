@@ -114,6 +114,7 @@ export function sparkline(svg, entries, options) {
   });
 
   const path = buildElement("path", {
+    class: "sparkline--line",
     d: pathCoords,
     fill: "none"
   });
@@ -121,6 +122,7 @@ export function sparkline(svg, entries, options) {
   let fillCoords = `${pathCoords} V ${fullHeight} L ${spotDiameter} ${fullHeight} Z`;
 
   const fill = buildElement("path", {
+    class: "sparkline--fill",
     d: fillCoords,
     stroke: "none"
   });
