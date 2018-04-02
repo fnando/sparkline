@@ -154,7 +154,7 @@ export function sparkline(svg, entries, options) {
   const interactionLayer = buildElement("rect", {
     width: svg.attributes.width.value,
     height: svg.attributes.height.value,
-    style: "fill:transparent;stroke:transparent",
+    style: "fill: transparent; stroke: transparent",
     class: "sparkline--interaction-layer",
   });
   svg.appendChild(interactionLayer);
