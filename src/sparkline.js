@@ -151,7 +151,15 @@ export function sparkline(svg, entries, options) {
   svg.appendChild(cursor);
   svg.appendChild(spot);
 
-  svg.addEventListener("mouseout", event => {
+  const interactionLayer = buildElement("rect", {
+    width: svg.attributes.width.value,
+    height: svg.attributes.height.value,
+    style: "fill:transparent;stroke:transparent",
+    class: "sparkline--interaction-layer",
+  });
+  svg.appendChild(interactionLayer);
+
+  interactionLayer.addEventListener("mouseout", event => {
     cursor.setAttribute("x1", offscreen);
     cursor.setAttribute("x2", offscreen);
 
@@ -162,7 +170,7 @@ export function sparkline(svg, entries, options) {
     }
   });
 
-  svg.addEventListener("mousemove", event => {
+  interactionLayer.addEventListener("mousemove", event => {
     const mouseX = event.offsetX;
 
     let nextDataPoint = datapoints.find(entry => {
