@@ -45,6 +45,11 @@ var sparkline =
 /******/ 		}
 /******/ 	};
 /******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
 /******/ 	__webpack_require__.n = function(module) {
 /******/ 		var getter = module && module.__esModule ?
@@ -60,12 +65,18 @@ var sparkline =
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
 /******/
+/******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/sparkline.js");
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ "./src/sparkline.js":
+/*!**************************!*\
+  !*** ./src/sparkline.js ***!
+  \**************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -209,8 +220,8 @@ function sparkline(svg, entries, options) {
     stroke: "none"
   });
 
-  svg.appendChild(path);
   svg.appendChild(fill);
+  svg.appendChild(path);
 
   if (!interactive) {
     return;
@@ -235,7 +246,15 @@ function sparkline(svg, entries, options) {
   svg.appendChild(cursor);
   svg.appendChild(spot);
 
-  svg.addEventListener("mouseout", function (event) {
+  var interactionLayer = buildElement("rect", {
+    width: svg.attributes.width.value,
+    height: svg.attributes.height.value,
+    style: "fill: transparent; stroke: transparent",
+    class: "sparkline--interaction-layer"
+  });
+  svg.appendChild(interactionLayer);
+
+  interactionLayer.addEventListener("mouseout", function (event) {
     cursor.setAttribute("x1", offscreen);
     cursor.setAttribute("x2", offscreen);
 
@@ -246,7 +265,7 @@ function sparkline(svg, entries, options) {
     }
   });
 
-  svg.addEventListener("mousemove", function (event) {
+  interactionLayer.addEventListener("mousemove", function (event) {
     var mouseX = event.offsetX;
 
     var nextDataPoint = datapoints.find(function (entry) {
@@ -286,5 +305,6 @@ function sparkline(svg, entries, options) {
 exports.default = sparkline;
 
 /***/ })
-/******/ ]);
+
+/******/ });
 //# sourceMappingURL=sparkline.js.map
