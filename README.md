@@ -1,5 +1,10 @@
 # sparkline
 
+[![NPM package version](https://img.shields.io/npm/v/@fnando/sparkline.svg)](https://www.npmjs.com/package/@fnando/sparkline)
+![License: MIT](https://img.shields.io/npm/l/@fnando/sparkline.svg)
+![Minified size](http://img.badgesize.io/fnando/sparkline/master/dist/sparkline.min.js.svg?label=min+size)
+![Minified+Gzip size](http://img.badgesize.io/fnando/sparkline/master/dist/sparkline.min.js.svg?compression=gzip&label=min%2Bgzip+size)
+
 Generate SVG sparklines with JavaScript without any external dependency.
 
 ## Instalation
