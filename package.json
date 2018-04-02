@@ -1,6 +1,6 @@
 {
   "name": "@fnando/sparkline",
-  "version": "0.3.6",
+  "version": "0.3.7",
   "files": [
     "src/sparkline.js",
     "dist/**/*",

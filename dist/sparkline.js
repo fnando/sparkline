@@ -209,6 +209,7 @@ function sparkline(svg, entries, options) {
   });
 
   var path = buildElement("path", {
+    class: "sparkline--line",
     d: pathCoords,
     fill: "none"
   });
@@ -216,6 +217,7 @@ function sparkline(svg, entries, options) {
   var fillCoords = pathCoords + " V " + fullHeight + " L " + spotDiameter + " " + fullHeight + " Z";
 
   var fill = buildElement("path", {
+    class: "sparkline--fill",
     d: fillCoords,
     stroke: "none"
   });
