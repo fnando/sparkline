@@ -76,27 +76,18 @@ var sparkline =
 /*!**************************!*\
   !*** ./src/sparkline.js ***!
   \**************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: sparkline, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.sparkline = sparkline;
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sparkline", function() { return sparkline; });
 function getY(max, height, diff, value) {
-  return parseFloat((height - value * height / max + diff).toFixed(2));
+  return parseFloat((height - (value * height / max) + diff).toFixed(2));
 }
 
 function removeChildren(svg) {
-  [].concat(_toConsumableArray(svg.querySelectorAll("*"))).forEach(function (element) {
-    return svg.removeChild(element);
-  });
+  [...svg.querySelectorAll("*")].forEach(element => svg.removeChild(element));
 }
 
 function defaultFetch(entry) {
@@ -104,9 +95,9 @@ function defaultFetch(entry) {
 }
 
 function buildElement(tag, attrs) {
-  var element = document.createElementNS("http://www.w3.org/2000/svg", tag);
+  const element = document.createElementNS("http://www.w3.org/2000/svg", tag);
 
-  for (var name in attrs) {
+  for (let name in attrs) {
     element.setAttribute(name, attrs[name]);
   }
 
@@ -122,82 +113,83 @@ function sparkline(svg, entries, options) {
 
   options = options || {};
 
-  if (typeof entries[0] === "number") {
-    entries = entries.map(function (entry) {
-      return { value: entry };
+  if (typeof(entries[0]) === "number") {
+    entries = entries.map(entry => {
+      return {value: entry};
     });
   }
 
   // This function will be called whenever the mouse moves
   // over the SVG. You can use it to render something like a
   // tooltip.
-  var onmousemove = options.onmousemove;
+  const onmousemove = options.onmousemove;
 
   // This function will be called whenever the mouse leaves
   // the SVG area. You can use it to hide the tooltip.
-  var onmouseout = options.onmouseout;
+  const onmouseout = options.onmouseout;
+
+  // Define the style of fill: start or end
+  const fillStyle = options.fillStyle || 'start';
 
   // Should we run in interactive mode? If yes, this will handle the
   // cursor and spot position when moving the mouse.
-  var interactive = "interactive" in options ? options.interactive : !!onmousemove;
+  const interactive = ("interactive" in options) ? options.interactive : !!onmousemove;
 
   // Define how big should be the spot area.
-  var spotRadius = options.spotRadius || 2;
-  var spotDiameter = spotRadius * 2;
+  const spotRadius = options.spotRadius || 2;
+  const spotDiameter = spotRadius * 2;
 
   // Define how wide should be the cursor area.
-  var cursorWidth = options.cursorWidth || 2;
+  const cursorWidth = options.cursorWidth || 2;
 
   // Get the stroke width; this is used to compute the
   // rendering offset.
-  var strokeWidth = parseFloat(svg.attributes["stroke-width"].value);
+  const strokeWidth = parseFloat(svg.attributes["stroke-width"].value);
 
   // By default, data must be formatted as an array of numbers or
   // an array of objects with the value key (like `[{value: 1}]`).
   // You can set a custom function to return data for a different
   // data structure.
-  var fetch = options.fetch || defaultFetch;
+  const fetch = options.fetch || defaultFetch;
 
   // Retrieve only values, easing the find for the maximum value.
-  var values = entries.map(function (entry) {
-    return fetch(entry);
-  });
+  const values = entries.map(entry => fetch(entry));
 
   // The rendering width will account for the spot size.
-  var width = parseFloat(svg.attributes.width.value) - spotDiameter * 2;
+  const width = parseFloat(svg.attributes.width.value) - spotDiameter * 2;
 
   // Get the SVG element's full height.
   // This is used
-  var fullHeight = parseFloat(svg.attributes.height.value);
+  const fullHeight = parseFloat(svg.attributes.height.value);
 
   // The rendering height accounts for stroke width and spot size.
-  var height = fullHeight - strokeWidth * 2 - spotDiameter;
+  const height = fullHeight - (strokeWidth * 2) - spotDiameter;
 
   // The maximum value. This is used to calculate the Y coord of
   // each sparkline datapoint.
-  var max = Math.max.apply(Math, _toConsumableArray(values));
+  const max = Math.max(...values);
 
   // Some arbitrary value to remove the cursor and spot out of
   // the viewing canvas.
-  var offscreen = -1000;
+  const offscreen = -1000;
 
   // Cache the last item index.
-  var lastItemIndex = values.length - 1;
+  const lastItemIndex = values.length - 1;
 
   // Calculate the X coord base step.
-  var offset = width / lastItemIndex;
+  const offset = width / lastItemIndex;
 
   // Hold all datapoints, which is whatever we got as the entry plus
   // x/y coords and the index.
-  var datapoints = [];
+  const datapoints = [];
 
   // Hold the line coordinates.
-  var pathY = getY(max, height, strokeWidth + spotRadius, values[0]);
-  var pathCoords = "M" + spotDiameter + " " + pathY;
+  const pathY = getY(max, height, strokeWidth + spotRadius, values[0]);
+  let pathCoords = `M${spotDiameter} ${pathY}`;
 
-  values.forEach(function (value, index) {
-    var x = index * offset + spotDiameter;
-    var y = getY(max, height, strokeWidth + spotRadius, value);
+  values.forEach((value, index) => {
+    const x = index * offset + spotDiameter;
+    const y = getY(max, height, strokeWidth + spotRadius, value);
 
     datapoints.push(Object.assign({}, entries[index], {
       index: index,
@@ -205,18 +197,20 @@ function sparkline(svg, entries, options) {
       y: y
     }));
 
-    pathCoords += " L " + x + " " + y;
+    pathCoords += ` L ${x} ${y}`;
   });
 
-  var path = buildElement("path", {
+  const path = buildElement("path", {
     class: "sparkline--line",
     d: pathCoords,
     fill: "none"
   });
 
-  var fillCoords = pathCoords + " V " + fullHeight + " L " + spotDiameter + " " + fullHeight + " Z";
+  let fillCoords = fillStyle == 'start'
+                              ? `${pathCoords} V ${fullHeight} L ${spotDiameter} ${fullHeight} Z`
+                              : `${pathCoords} V ${0} L ${spotDiameter} ${0} Z`;
 
-  var fill = buildElement("path", {
+  const fill = buildElement("path", {
     class: "sparkline--fill",
     d: fillCoords,
     stroke: "none"
@@ -229,7 +223,7 @@ function sparkline(svg, entries, options) {
     return;
   }
 
-  var cursor = buildElement("line", {
+  const cursor = buildElement("line", {
     class: "sparkline--cursor",
     x1: offscreen,
     x2: offscreen,
@@ -238,7 +232,7 @@ function sparkline(svg, entries, options) {
     "stroke-width": cursorWidth
   });
 
-  var spot = buildElement("circle", {
+  const spot = buildElement("circle", {
     class: "sparkline--spot",
     cx: offscreen,
     cy: offscreen,
@@ -248,15 +242,15 @@ function sparkline(svg, entries, options) {
   svg.appendChild(cursor);
   svg.appendChild(spot);
 
-  var interactionLayer = buildElement("rect", {
+  const interactionLayer = buildElement("rect", {
     width: svg.attributes.width.value,
     height: svg.attributes.height.value,
     style: "fill: transparent; stroke: transparent",
-    class: "sparkline--interaction-layer"
+    class: "sparkline--interaction-layer",
   });
   svg.appendChild(interactionLayer);
 
-  interactionLayer.addEventListener("mouseout", function (event) {
+  interactionLayer.addEventListener("mouseout", event => {
     cursor.setAttribute("x1", offscreen);
     cursor.setAttribute("x2", offscreen);
 
@@ -267,10 +261,10 @@ function sparkline(svg, entries, options) {
     }
   });
 
-  interactionLayer.addEventListener("mousemove", function (event) {
-    var mouseX = event.offsetX;
+  interactionLayer.addEventListener("mousemove", event => {
+    const mouseX = event.offsetX;
 
-    var nextDataPoint = datapoints.find(function (entry) {
+    let nextDataPoint = datapoints.find(entry => {
       return entry.x >= mouseX;
     });
 
@@ -278,19 +272,19 @@ function sparkline(svg, entries, options) {
       nextDataPoint = datapoints[lastItemIndex];
     }
 
-    var previousDataPoint = datapoints[datapoints.indexOf(nextDataPoint) - 1];
-    var currentDataPoint = void 0;
-    var halfway = void 0;
+    let previousDataPoint = datapoints[datapoints.indexOf(nextDataPoint) - 1];
+    let currentDataPoint;
+    let halfway;
 
     if (previousDataPoint) {
-      halfway = previousDataPoint.x + (nextDataPoint.x - previousDataPoint.x) / 2;
+      halfway = previousDataPoint.x + ((nextDataPoint.x - previousDataPoint.x) / 2);
       currentDataPoint = mouseX >= halfway ? nextDataPoint : previousDataPoint;
     } else {
       currentDataPoint = nextDataPoint;
     }
 
-    var x = currentDataPoint.x;
-    var y = currentDataPoint.y;
+    const x = currentDataPoint.x;
+    const y = currentDataPoint.y;
 
     spot.setAttribute("cx", x);
     spot.setAttribute("cy", y);
@@ -304,7 +298,8 @@ function sparkline(svg, entries, options) {
   });
 }
 
-exports.default = sparkline;
+/* harmony default export */ __webpack_exports__["default"] = (sparkline);
+
 
 /***/ })
 

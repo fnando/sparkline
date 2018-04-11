@@ -44,6 +44,9 @@ export function sparkline(svg, entries, options) {
   // the SVG area. You can use it to hide the tooltip.
   const onmouseout = options.onmouseout;
 
+  // Define the style of fill: start or end
+  const fillStyle = options.fillStyle || 'start';
+
   // Should we run in interactive mode? If yes, this will handle the
   // cursor and spot position when moving the mouse.
   const interactive = ("interactive" in options) ? options.interactive : !!onmousemove;
@@ -119,7 +122,9 @@ export function sparkline(svg, entries, options) {
     fill: "none"
   });
 
-  let fillCoords = `${pathCoords} V ${fullHeight} L ${spotDiameter} ${fullHeight} Z`;
+  let fillCoords = fillStyle == 'start'
+                              ? `${pathCoords} V ${fullHeight} L ${spotDiameter} ${fullHeight} Z`
+                              : `${pathCoords} V ${0} L ${spotDiameter} ${0} Z`;
 
   const fill = buildElement("path", {
     class: "sparkline--fill",
