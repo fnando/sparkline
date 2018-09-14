@@ -8,6 +8,7 @@
   ],
   "main": "dist/sparkline.js",
   "module": "src/sparkline.js",
+  "browser": "dist/sparkline.js",
   "scripts": {
     "test": "mocha --require babel-core/register \"test/**/*_test.js\"",
     "js:dist:expanded": "webpack",
