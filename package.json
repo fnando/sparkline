@@ -10,7 +10,7 @@
   "module": "src/sparkline.js",
   "browser": "dist/sparkline.js",
   "scripts": {
-    "test": "mocha --require babel-core/register \"test/**/*_test.js\"",
+    "test": "mocha --require @babel/register \"test/**/*_test.js\"",
     "js:dist:expanded": "webpack",
     "js:dist:minified": "env NODE_ENV=production webpack",
     "dist": "yarn test && yarn js:dist:expanded && yarn js:dist:minified"
@@ -20,14 +20,15 @@
   "repository": "https://github.com/fnando/sparkline",
   "private": false,
   "devDependencies": {
-    "babel-core": "6.26.0",
-    "babel-loader": "7.1.4",
-    "babel-preset-env": "1.6.1",
-    "jsdom": "11.7.0",
-    "mocha": "5.0.5",
-    "snap-shot": "2.17.0",
-    "uglifyjs-webpack-plugin": "1.2.4",
-    "webpack": "4.4.1",
-    "webpack-cli": "2.0.13"
+    "@babel/core": "7.0.x",
+    "@babel/register": "7.0.x",
+    "@babel/preset-env": "7.0.x",
+    "babel-loader": "8.0.x",
+    "jsdom": "11.7.x",
+    "mocha": "5.0.x",
+    "snap-shot": "2.17.x",
+    "uglifyjs-webpack-plugin": "2.0.x",
+    "webpack": "4.19.x",
+    "webpack-cli": "3.1.x"
   }
 }
