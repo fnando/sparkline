@@ -7,13 +7,12 @@
     "README.md"
   ],
   "main": "dist/sparkline.js",
-  "module": "src/sparkline.js",
-  "browser": "dist/sparkline.js",
+  "module": "src/sparkline.commonjs2.js",
   "scripts": {
     "test": "mocha --require @babel/register \"test/**/*_test.js\"",
-    "js:dist:expanded": "webpack",
-    "js:dist:minified": "env NODE_ENV=production webpack",
-    "dist": "yarn test && yarn js:dist:expanded && yarn js:dist:minified"
+    "js:dist:commonjs2": "LIBRARY_TARGET=commonjs2 webpack",
+    "js:dist:browser": "LIBRARY_TARGET=var webpack",
+    "dist": "rm -rf dist/* && yarn test && yarn js:dist:browser && yarn js:dist:commonjs2"
   },
   "description": "Generate SVG sparklines with JavaScript without any external dependency.",
   "license": "MIT",
@@ -21,8 +20,12 @@
   "private": false,
   "devDependencies": {
     "@babel/core": "7.0.x",
-    "@babel/register": "7.0.x",
+    "@babel/plugin-proposal-function-bind": "7.0.x",
+    "@babel/plugin-proposal-object-rest-spread": "x",
+    "@babel/plugin-transform-runtime": "7.1.x",
     "@babel/preset-env": "7.0.x",
+    "@babel/register": "7.0.x",
+    "@babel/runtime": "7.0.x",
     "babel-loader": "8.0.x",
     "jsdom": "11.7.x",
     "mocha": "5.0.x",

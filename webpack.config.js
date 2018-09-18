@@ -1,30 +1,24 @@
 const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
-let filename;
-let plugins = [];
-let mode;
-
-if (process.env.NODE_ENV === "production") {
-  mode = "production";
-  filename = "sparkline.min.js";
-  plugins.push(new UglifyJSPlugin({sourceMap: true}));
-} else {
-  mode = "development";
-  filename = "sparkline.js";
-}
+const libraryTarget = process.env.LIBRARY_TARGET;
+const names = {
+  var: "sparkline",
+  commonjs2: "sparkline.commonjs2"
+};
 
 module.exports = {
   entry: `${__dirname}/src/sparkline.js`,
   devtool: "source-map",
   target: "web",
-  mode: mode,
+  mode: "production",
   node: {
     fs: "empty"
   },
 
   output: {
     path: `${__dirname}/dist/`,
-    filename: filename,
-    library: "sparkline"
+    filename: `${names[libraryTarget]}.js`,
+    library: "sparkline",
+    libraryTarget: libraryTarget
   },
 
   module: {
@@ -37,5 +31,7 @@ module.exports = {
     ]
   },
 
-  plugins: plugins
+  plugins: [
+    new UglifyJSPlugin({sourceMap: true})
+  ]
 };
