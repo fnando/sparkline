@@ -1,13 +1,13 @@
 {
   "name": "@fnando/sparkline",
-  "version": "0.3.9",
+  "version": "0.3.10",
   "files": [
     "src/sparkline.js",
     "dist/**/*",
     "README.md"
   ],
   "main": "dist/sparkline.js",
-  "module": "src/sparkline.commonjs2.js",
+  "module": "dist/sparkline.commonjs2.js",
   "scripts": {
     "test": "mocha --require @babel/register \"test/**/*_test.js\"",
     "js:dist:commonjs2": "LIBRARY_TARGET=commonjs2 webpack",
