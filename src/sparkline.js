@@ -1,9 +1,9 @@
 function getY(max, height, diff, value) {
-  return parseFloat((height - (value * height / max) + diff).toFixed(2));
+  return (Math.round((height - (value * height / max) + diff) * 100)) / 100;
 }
 
 function removeChildren(svg) {
-  [...svg.querySelectorAll("*")].forEach(element => svg.removeChild(element));
+  Array.from(svg.childNodes).forEach(element => svg.removeChild(element));
 }
 
 function defaultFetch(entry) {
@@ -46,7 +46,7 @@ export function sparkline(svg, entries, options) {
 
   // Should we run in interactive mode? If yes, this will handle the
   // cursor and spot position when moving the mouse.
-  const interactive = ("interactive" in options) ? options.interactive : !!onmousemove;
+  const interactive = options.interactive != null ? options.interactive : !!onmousemove;
 
   // Define how big should be the spot area.
   const spotRadius = options.spotRadius || 2;
@@ -80,7 +80,7 @@ export function sparkline(svg, entries, options) {
 
   // The maximum value. This is used to calculate the Y coord of
   // each sparkline datapoint.
-  const max = Math.max(...values);
+  const max = Math.max(options.minScale || 0,...values);
 
   // Some arbitrary value to remove the cursor and spot out of
   // the viewing canvas.
