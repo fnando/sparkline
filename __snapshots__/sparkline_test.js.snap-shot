@@ -16,3 +16,5 @@ exports['renders interactive svg based on the nearest edge 1'] = "<svg width=\"1
 
 exports['renders interactive svg based on the nearest edge 2'] = "<svg width=\"100\" height=\"30\" stroke-width=\"2\"><path class=\"sparkline--fill\" d=\"M4 15 L 4 15 L 96 4 V 30 L 4 30 Z\" stroke=\"none\"></path><path class=\"sparkline--line\" d=\"M4 15 L 4 15 L 96 4\" fill=\"none\"></path><line class=\"sparkline--cursor\" x1=\"96\" x2=\"96\" y1=\"0\" y2=\"30\" stroke-width=\"2\"></line><circle class=\"sparkline--spot\" cx=\"96\" cy=\"4\" r=\"2\"></circle><rect width=\"100\" height=\"30\" style=\"fill: transparent; stroke: transparent\" class=\"sparkline--interaction-layer\"></rect></svg>"
 
+exports['renders svg with entirely 0-based values 1'] = "<svg width=\"100\" height=\"30\" stroke-width=\"2\"><path class=\"sparkline--fill\" d=\"M4 22 L 4 22 L 27 22 L 50 22 L 73 22 L 96 22 V 30 L 4 30 Z\" stroke=\"none\"></path><path class=\"sparkline--line\" d=\"M4 22 L 4 22 L 27 22 L 50 22 L 73 22 L 96 22\" fill=\"none\"></path></svg>"
+
