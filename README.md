@@ -2,8 +2,8 @@
 
 [![NPM package version](https://img.shields.io/npm/v/@fnando/sparkline.svg)](https://www.npmjs.com/package/@fnando/sparkline)
 ![License: MIT](https://img.shields.io/npm/l/@fnando/sparkline.svg)
-![Minified size](http://img.badgesize.io/fnando/sparkline/master/dist/sparkline.min.js.svg?label=min+size)
-![Minified+Gzip size](http://img.badgesize.io/fnando/sparkline/master/dist/sparkline.min.js.svg?compression=gzip&label=min%2Bgzip+size)
+![Minified size](http://img.badgesize.io/fnando/sparkline/main/dist/sparkline.min.js.svg?label=min+size)
+![Minified+Gzip size](http://img.badgesize.io/fnando/sparkline/main/dist/sparkline.min.js.svg?compression=gzip&label=min%2Bgzip+size)
 
 Generate SVG sparklines with JavaScript without any external dependency.
 
@@ -92,13 +92,13 @@ You can change the colors by either setting the attributes directly to the SVG e
 
 Available at https://codepen.io/fnando/full/KyZLLV/
 
-[![](https://github.com/fnando/sparkline/blob/master/sparkline.gif?raw=true)](https://codepen.io/fnando/full/KyZLLV/)
+[![](https://github.com/fnando/sparkline/blob/main/sparkline.gif?raw=true)](https://codepen.io/fnando/full/KyZLLV/)
 
 ### Interactive
 
 Available at https://codepen.io/fnando/full/GOQLVE/
 
-[![](https://github.com/fnando/sparkline/blob/master/sparkline-interactive.gif?raw=true)](https://codepen.io/fnando/full/GOQLVE)
+[![](https://github.com/fnando/sparkline/blob/main/sparkline-interactive.gif?raw=true)](https://codepen.io/fnando/full/GOQLVE)
 
 ## License
 
