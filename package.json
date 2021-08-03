@@ -8,6 +8,7 @@
   ],
   "main": "dist/sparkline.js",
   "module": "dist/sparkline.commonjs2.js",
+  "exports": "src/sparkline.js",
   "scripts": {
     "test": "mocha --require @babel/register \"test/**/*_test.js\"",
     "js:dist:commonjs2": "LIBRARY_TARGET=commonjs2 webpack",
