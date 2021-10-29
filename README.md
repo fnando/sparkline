@@ -46,7 +46,7 @@ This is the minimum working example:
 <svg class="sparkline" width="100" height="30" stroke-width="3"></svg>
 
 <script>
-  sparkline(document.querySelector(".sparkline"), [1, 5, 2, 4, 8, 3, 7]);
+  sparkline.sparkline(document.querySelector(".sparkline"), [1, 5, 2, 4, 8, 3, 7]);
 </script>
 ```
 
