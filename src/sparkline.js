@@ -1,4 +1,5 @@
 function getY(max, height, diff, value) {
+  if (max === 0) return height * 1.0
   return parseFloat((height - (value * height / max) + diff).toFixed(2));
 }
 

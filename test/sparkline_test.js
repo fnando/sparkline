@@ -31,6 +31,12 @@ describe("sparkline", () => {
     snapshot(svg.outerHTML);
   });
 
+  it("renders svg with entirely 0-based values", () => {
+    const svg = createSVG(100, 30, 2);
+    sparkline(svg, [0, 0, 0, 0, 0]);
+    snapshot(svg.outerHTML);
+  });
+
   it("renders svg for 1-item array", () => {
     const svg = createSVG(100, 30, 2);
     sparkline(svg, [5]);
