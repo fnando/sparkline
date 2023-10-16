@@ -48,6 +48,9 @@ export function sparkline(svg, entries, options) {
   // cursor and spot position when moving the mouse.
   const interactive = ("interactive" in options) ? options.interactive : !!onmousemove;
 
+  // normalise the values
+  const normalize = ("normalize" in options) ? options.normalize : false;
+
   // Define how big should be the spot area.
   const spotRadius = options.spotRadius || 2;
   const spotDiameter = spotRadius * 2;
@@ -81,6 +84,7 @@ export function sparkline(svg, entries, options) {
   // The maximum value. This is used to calculate the Y coord of
   // each sparkline datapoint.
   const max = Math.max(...values);
+  const min = Math.min(...values);
 
   // Some arbitrary value to remove the cursor and spot out of
   // the viewing canvas.
@@ -96,13 +100,25 @@ export function sparkline(svg, entries, options) {
   // x/y coords and the index.
   const datapoints = [];
 
+  let renderValues = values
+  let y0 = getY(max, height, strokeWidth + spotRadius, 0 )
+
+  if(normalize) {
+    renderValues = values.map((value) => (value - min) / (max - min))
+    let zeroNormalised = (0 - min) / (max - min)
+    y0 = getY(1, height, strokeWidth + spotRadius, zeroNormalised )
+  }
+
+
+  const renderMax = normalize ? 1 : max
+
   // Hold the line coordinates.
-  const pathY = getY(max, height, strokeWidth + spotRadius, values[0]);
+  const pathY = getY(renderMax, height, strokeWidth + spotRadius, renderValues[0]);
   let pathCoords = `M${spotDiameter} ${pathY}`;
 
-  values.forEach((value, index) => {
+  renderValues.forEach((value, index) => {
     const x = index * offset + spotDiameter;
-    const y = getY(max, height, strokeWidth + spotRadius, value);
+    const y = getY(renderMax, height, strokeWidth + spotRadius, value);
 
     datapoints.push(Object.assign({}, entries[index], {
       index: index,
@@ -119,15 +135,58 @@ export function sparkline(svg, entries, options) {
     fill: "none"
   });
 
-  let fillCoords = `${pathCoords} V ${fullHeight} L ${spotDiameter} ${fullHeight} Z`;
-
-  const fill = buildElement("path", {
-    class: "sparkline--fill",
-    d: fillCoords,
+  let fillCoordsPos = `${pathCoords} V ${fullHeight} L ${spotDiameter} ${fullHeight} Z`;
+  const fillPos = buildElement("path", {
+    class: "sparkline--fill sparkline--fill-pos",
+    d: fillCoordsPos,
     stroke: "none"
   });
 
-  svg.appendChild(fill);
+  let fillCoordsNeg = `${pathCoords} V 0 L ${spotDiameter} 0 Z`;
+  const fillNeg = buildElement("path", {
+    class: "sparkline--fill sparkline--fill-neg",
+    d: fillCoordsNeg,
+    stroke: "none",
+  });
+
+  if(max >= 0 && min >= 0 ) { // only positive values
+    svg.appendChild(fillPos);
+  }
+  else if(max <= 0 && min <= 0 ) { // only negative values
+    svg.appendChild(fillNeg);
+  } else { // ues clipping to provide positive and negative fill areas
+
+    let defs = buildElement("defs")
+    let clipPathPos = buildElement("clipPath", {
+      id: "clipPathPos"
+    })
+    let clipPathPosPath = buildElement("path", {
+      d: `M0 0 L ${width} 0 L ${width} ${y0} L 0 ${y0} Z`
+    })
+
+    clipPathPos.appendChild(clipPathPosPath);
+    defs.appendChild(clipPathPos);
+
+    fillPos.setAttribute("clip-path", "url(#clipPathPos)")
+
+    let clipPathNeg = buildElement("clipPath", {
+      id: "clipPathNeg"
+    })
+    let clipPathNegPath = buildElement("path", {
+      d: `M0 ${y0} L ${width} ${y0} L ${width} ${fullHeight} L 0 ${fullHeight} Z`
+    })
+
+    clipPathNeg.appendChild(clipPathNegPath);
+    defs.appendChild(clipPathNeg);
+    svg.appendChild(defs);
+
+    fillPos.setAttribute("clip-path", "url(#clipPathPos)")
+    svg.appendChild(fillPos);
+
+    fillNeg.setAttribute("clip-path", "url(#clipPathNeg)")
+    svg.appendChild(fillNeg);
+  }
+
   svg.appendChild(path);
 
   if (!interactive) {
